@@ -40,7 +40,7 @@ function AuthLoadingScreen() {
       checkUser();
     }, []);
 
-    function signIn() {
+    function signIn(user) {
       setUserToken(user.signInUserSession.accessToken.jwtToken);
       setLoading(false);
     }
@@ -54,7 +54,6 @@ function AuthLoadingScreen() {
       } finally {
         setLoading(false);
       }
-      
     }
 
     if (showLoadingSpinner) {
