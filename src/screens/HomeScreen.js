@@ -5,7 +5,8 @@ import {
   ScrollView,
   View,
   Text,
-  StatusBar
+  StatusBar,
+  Button
 } from 'react-native';
 
 import {
@@ -16,7 +17,7 @@ import {
   ReloadInstructions
 } from 'react-native/Libraries/NewAppScreen';
 
-function HomeScreen() {
+function HomeScreen({ signOut }) {
   return (
     <>
       <StatusBar barStyle="dark-content" />
@@ -26,6 +27,7 @@ function HomeScreen() {
           style={styles.scrollView}>
           <Header />
           <View style={styles.body}>
+            <Button onPress={() => signOut()} title='Sign out' />
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>Step One</Text>
               <Text style={styles.sectionDescription}>
