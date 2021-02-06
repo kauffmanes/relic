@@ -1,0 +1,20 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-relic-dev-221819-authRole",
+            "UnauthRoleArn": "arn:aws:iam::268497708079:role/amplify-relic-dev-221819-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::268497708079:role/amplify-relic-dev-221819-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-relic-dev-221819-deployment",
+            "UnauthRoleName": "amplify-relic-dev-221819-unauthRole",
+            "StackName": "amplify-relic-dev-221819",
+            "StackId": "arn:aws:cloudformation:us-east-1:268497708079:stack/amplify-relic-dev-221819/0839e860-682a-11eb-988e-1230a5204572",
+            "AmplifyAppId": "d5ihkth4r5t1p"
+        },
+        "categories": {
+            "auth": {
+                "relic64b976da": {}
+            }
+        }
+    }
+}

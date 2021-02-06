@@ -148,7 +148,6 @@
 				D973318F90E5462CC66D3890 /* Pods-Relic-tvOSTests.debug.xcconfig */,
 				21B473AC1EAE3D8CDDC7ACEC /* Pods-Relic-tvOSTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -209,7 +208,6 @@
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				319E67682FC731729E54053D /* [CP] Embed Pods Frameworks */,
 				91F102F058BD90AE1F60FB58 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -232,7 +230,6 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				073EBDBFDAD70C373AAC8EBC /* [CP] Embed Pods Frameworks */,
 				8DD12954123890E9FDF05F94 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -379,24 +376,6 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
-		073EBDBFDAD70C373AAC8EBC /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Relic/Pods-Relic-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL/OpenSSL.framework/OpenSSL",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OpenSSL.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Relic/Pods-Relic-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -410,24 +389,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
-		};
-		319E67682FC731729E54053D /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Relic-RelicTests/Pods-Relic-RelicTests-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL/OpenSSL.framework/OpenSSL",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OpenSSL.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Relic-RelicTests/Pods-Relic-RelicTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		7310E8FCD4E3A70E3A4B116C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -706,6 +667,7 @@
 				PRODUCT_NAME = Relic;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 2;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -727,6 +689,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Relic;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 2;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

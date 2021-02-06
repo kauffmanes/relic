@@ -1,0 +1,9 @@
+{
+	"auth": {
+		"relic64b976da": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
+		}
+	}
+}
