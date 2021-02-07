@@ -12,8 +12,13 @@
             "AmplifyAppId": "d5ihkth4r5t1p"
         },
         "categories": {
+            "function": {
+                "relicec1ebe95PostConfirmation": {
+                    "GROUP": "DefaultTenantGroup"
+                }
+            },
             "auth": {
-                "relic64b976da": {}
+                "relicec1ebe95": {}
             }
         }
     }

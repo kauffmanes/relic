@@ -1,8 +1,8 @@
 {
-    "identityPoolName": "relic64b976da_identitypool_64b976da",
+    "identityPoolName": "relicec1ebe95_identitypool_ec1ebe95",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "relic64b976da",
-    "userPoolName": "relic64b976da_userpool_64b976da",
+    "resourceNameTruncated": "relicec1ebe95",
+    "userPoolName": "relicec1ebe95_userpool_ec1ebe95",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -28,10 +28,10 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "userpoolClientLambdaRole": "relic664b976da_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "reliceec1ebe95_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "64b976da",
-    "resourceName": "relic64b976da",
+    "sharedId": "ec1ebe95",
+    "resourceName": "relicec1ebe95",
     "authSelections": "identityPoolAndUserPool",
     "authRoleArn": {
         "Fn::GetAtt": [
@@ -49,11 +49,23 @@
     "usernameAttributes": [
         "email"
     ],
-    "triggers": "{}",
+    "triggers": "{\"PostConfirmation\":[\"add-to-group\"]}",
     "userPoolGroupList": [],
     "parentStack": {
         "Ref": "AWS::StackId"
     },
-    "permissions": [],
-    "dependsOn": []
+    "permissions": [
+        "{\"policyName\":\"AddToGroupCognito\",\"trigger\":\"PostConfirmation\",\"effect\":\"Allow\",\"actions\":[\"cognito-idp:AdminAddUserToGroup\",\"cognito-idp:GetGroup\",\"cognito-idp:CreateGroup\"],\"resource\":{\"paramType\":\"!GetAtt\",\"keys\":[\"UserPool\",\"Arn\"]}}"
+    ],
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "relicec1ebe95PostConfirmation",
+            "triggerProvider": "Cognito",
+            "attributes": [
+                "Arn",
+                "Name"
+            ]
+        }
+    ]
 }
