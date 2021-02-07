@@ -1,6 +1,6 @@
 /**
  * Relic Data Collection App
- * https://github.com/kauffmanes/relic
+ * https://github.com/facebook/react-native
  *
  * @format
  * @flow strict-local

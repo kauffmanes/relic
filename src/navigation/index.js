@@ -76,35 +76,3 @@ function AuthLoadingScreen() {
 }
 
 export default AuthLoadingScreen;
-
-
-// const App: () => React$Node = () => {
-//   const signUpConfig = {
-//     hideAllDefaults: true,
-//     signUpFields: [
-//       {
-//         label: 'Email',
-//         key: 'email',
-//         required: true,
-//         displayOrder: 1,
-//         type: 'string',
-//       },
-//       {
-//         label: 'Password',
-//         key: 'password',
-//         required: true,
-//         displayOrder: 2,
-//         type: 'password',
-//       },
-//     ],
-//   };
-
-//   return (
-//     <>
-//       <StatusBar barStyle="dark-content" />
-//       <Authenticator usernameAttributes="email" signUpConfig={signUpConfig} />
-//     </>
-//   );
-// };
-
-// export default withAuthenticator(App);
