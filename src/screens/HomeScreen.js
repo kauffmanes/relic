@@ -1,4 +1,8 @@
 import * as React from 'react';
+import Auth from '@aws-amplify/auth';
+import { DataStore } from '@aws-amplify/datastore';
+import { Site } from '../models';
+
 import {
   SafeAreaView,
   StyleSheet,
@@ -6,18 +10,62 @@ import {
   View,
   Text,
   StatusBar,
-  Button
+  Button,
+  TextInput,
+  Alert
 } from 'react-native';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions
-} from 'react-native/Libraries/NewAppScreen';
-
 function HomeScreen({ navigation }) {
+
+  const [sites, updateSites] = React.useState([]);
+  const [errorMessage, updateErrorMessage] = React.useState(null);
+  const [name, changeName] = React.useState('');
+  const [description, changeDescription] = React.useState('');
+  const [tenant, setTenant] = React.useState('');
+
+  React.useEffect(() => {
+    fetchUserInfo(setTenant);
+    fetchSites();
+    const subscription = DataStore.observe(Site).subscribe(() => fetchSites());
+    return () => subscription.unsubscribe();
+  }, []);
+
+  async function fetchUserInfo(setTenant) {
+    // get the access token of the signed in user
+    const {accessToken} = await Auth.currentSession();
+    // get the tenant from the top of the cognito groups list
+    const cognitogroups = accessToken.payload['cognito:groups'];
+    const tenant = cognitogroups[0];
+    setTenant(tenant);
+  }
+
+  async function fetchSites() {
+    try {
+      const sites = await DataStore.query(Site);
+      updateSites(sites);
+    } catch(err) {
+      updateErrorMessage(err);
+    }
+  }
+
+  // create sites here
+  async function createSite() {
+    // validation
+    if (!name || !description || !tenant) {
+      Alert.alert('Name and desc and tenant are required.');
+      return;
+    }
+
+    try {
+      await DataStore.save(new Site({ name, description, tenant }));
+      changeName('');
+      changeDescription('');
+    } catch(err) {
+      console.log(err);
+      Alert.alert(err);
+    }
+  }
+
   return (
     <>
       <StatusBar barStyle="dark-content" />
@@ -25,35 +73,30 @@ function HomeScreen({ navigation }) {
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
-          <Header />
           <View style={styles.body}>
             <Button title="User Details" onPress={() => navigation.navigate('SignUp')} />
+            <Text style={styles.sectionDescription}>Your tenant is {tenant}</Text>
             <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
+              <Text style={styles.sectionTitle}>Sites</Text>
               <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
+                {Array.isArray(sites) && sites.map(site => (
+                  <Text key={site.id}>{site.name} | {site.tenant}</Text>
+                ))}
               </Text>
+              <TextInput
+                value={name}
+                placeholder="Site Name"
+                onChangeText={(text) => changeName(text)}
+                autoFocus
+              />
+              <TextInput
+                value={description}
+                placeholder="Site Description"
+                onChangeText={(text) => changeDescription(text)}
+              />
+              <Button title='create new site' onPress={createSite} />
+              <Text>{errorMessage}</Text>
             </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
           </View>
         </ScrollView>
       </SafeAreaView>
@@ -63,14 +106,14 @@ function HomeScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   scrollView: {
-    backgroundColor: Colors.lighter
+    // backgroundColor: Colors.lighter
   },
   engine: {
     position: 'absolute',
     right: 0
   },
   body: {
-    backgroundColor: Colors.white
+    // backgroundColor: Colors.white
   },
   sectionContainer: {
     marginTop: 32,
@@ -79,19 +122,19 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 24,
     fontWeight: '600',
-    color: Colors.black
+    // color: Colors.black
   },
   sectionDescription: {
     marginTop: 8,
     fontSize: 18,
     fontWeight: '400',
-    color: Colors.dark
+    // color: Colors.dark
   },
   highlight: {
     fontWeight: '700'
   },
   footer: {
-    color: Colors.dark,
+    // color: Colors.dark,
     fontSize: 12,
     fontWeight: '600',
     padding: 4,

@@ -2,7 +2,6 @@ import * as React from 'react';
 import {
   StyleSheet,
   View,
-  Text,
   Button
 } from 'react-native';
 
@@ -16,7 +15,7 @@ const styles = StyleSheet.create({
     },
   });
 
-const SignOutScreen = ({ navigation, signOut }) => {
+const SignOutScreen = ({ signOut }) => {
     return (
         <View style={styles.container}>
             <Button onPress={() => signOut()} title='Sign out' />

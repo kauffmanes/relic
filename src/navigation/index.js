@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Auth from '@aws-amplify/auth';
+import { DataStore } from '@aws-amplify/datastore';
 import { NavigationContainer } from '@react-navigation/native';
 
 import {
@@ -48,6 +49,7 @@ function AuthLoadingScreen() {
     async function signOut() {
       try {
         await Auth.signOut();
+        await DataStore.clear();
         setUserToken(null);
       } catch (error) {
           console.log('error signing out: ', error);

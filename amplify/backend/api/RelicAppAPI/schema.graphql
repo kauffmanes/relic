@@ -44,7 +44,9 @@
 # phase:                      ""
 # datesFrom:                  DATE
 # datesTo:                    DATE
-type Site @model {
+type Site
+  @model
+  @auth(rules: [{ allow: groups, groupsField: "tenant" }]) {
   id: ID!
   tenant: ID!
   name: String!
