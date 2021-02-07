@@ -1,10 +1,52 @@
-type Todo
-  @model(subscriptions: null)
-  # looks in the tenant field (specified by the groupsField) of the
-  # Todo and matches it against the groups in the access token
-  @auth(rules: [{allow: groups, groupsField: "tenant"}]) { 
+
+# http://www.chacoarchive.org/bibl_database/survey_site_forms/show/21?public=true
+# id:                         {autogen}
+# number:                     "29SJ1632"
+# type:                       Pueblo
+# name:                       "Chaco"
+# recordedBy:                 Windes T. 
+# oldSiteNumbers:             [LA41632]
+# landOwner:                  "NPS"  - select/create new if doesn't exist
+# lowestElevation:            6280
+# highestElevation:           6320
+# drainage:                   "Chaco Wash, between 6th +7th L. Trib above Fajada Wash"
+# primaryLandform:            "bottom"
+# secondaryLandform:          "talus"
+# siteExposure:               "" - not sure what this is yet
+# slopeDirection:             {N,E,S,W}
+# slopeGrade:                 45 (%)
+# groundCover:                "brush" - select/create new if doesn't exist
+# nearestWaterSource:         ""
+# soil:                       "residual" - select/create new if doesn't exist
+# # size params below
+# longDimension:              number
+# shortDimension:             number
+# area_rectangle:             number
+# diameter:                   number
+# area_circle:                number
+# depth:                      number
+# #description below:
+# number_of_rooms:            number
+# number_of_rooms_min:        number
+# number_of_rooms_max:        number
+# number_of_kivas:            number
+# number_of_kivas_min:        number
+# number_of_kivas_max:        number
+# number_of_great_kivas_min:  number
+# site_description:           "1 Store room, 3 hogans, 1 hearth Simple Masonry"
+# condition:                  {stable}
+# photos:                     photos stored in s3
+# specimens:                  [Sherds#Debitage (FS547) 2pts Bone (546) Shell (FS 548)]
+# remarks:                    "something cool"
+# references:                 "Sgt. Ranch Quad"
+# lab_notes:                  "Anasazi pottery here prob"
+# time_period:                "Unspecified"
+# phase:                      ""
+# datesFrom:                  DATE
+# datesTo:                    DATE
+type Site @model {
   id: ID!
-  tenant: ID! # stores the tenant associated with the Todo item
+  tenant: ID!
   name: String!
   description: String
 }

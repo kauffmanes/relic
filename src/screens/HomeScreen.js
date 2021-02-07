@@ -17,7 +17,7 @@ import {
   ReloadInstructions
 } from 'react-native/Libraries/NewAppScreen';
 
-function HomeScreen({ signOut }) {
+function HomeScreen({ navigation }) {
   return (
     <>
       <StatusBar barStyle="dark-content" />
@@ -27,7 +27,7 @@ function HomeScreen({ signOut }) {
           style={styles.scrollView}>
           <Header />
           <View style={styles.body}>
-            <Button onPress={() => signOut()} title='Sign out' />
+            <Button title="User Details" onPress={() => navigation.navigate('SignUp')} />
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>Step One</Text>
               <Text style={styles.sectionDescription}>

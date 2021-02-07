@@ -20,6 +20,8 @@ Digital Archaeology collection tool
 1. Numerical recording
 1. Geotagging
 
+# Commands
+1. `amplify codegen models` to generate models
 
 # Troubleshooting
 - https://github.com/CocoaPods/CocoaPods/issues/10286

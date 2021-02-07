@@ -14,9 +14,11 @@ const styles = StyleSheet.create({
 
 function SignUpScreen({ navigation }) {
 
-  const [name, onChangeName] = React.useState('');
+  const [firstName, onChangeFirstName] = React.useState('');
+  const [lastName, onChangeLastName] = React.useState('');
   const [email, onChangeEmail] = React.useState('');
   const [password, onChangePassword] = React.useState('');
+  const [tenant, onChangeTenant] = React.useState('');
   const [repeatPassword, onChangeRepeatPassword] = React.useState('');
   const [invalidMessage, setInvalidMessage] = React.useState(null);
 
@@ -28,10 +30,12 @@ function SignUpScreen({ navigation }) {
         username: email,
         password,
         attributes: {
-          email, // optional
-          name,
+          email,
+          'given_name': firstName,
+          'family_name': lastName,
+          'custom:tenant': tenant
         },
-        validationData: [], // optional
+        validationData: [],
       })
         .then((data) => {
           console.log(data);
@@ -52,10 +56,15 @@ function SignUpScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <TextInput
-        value={name}
-        placeholder="Name"
-        onChangeText={(text) => onChangeName(text)}
+        value={firstName}
+        placeholder="First Name"
+        onChangeText={(text) => onChangeFirstName(text)}
         autoFocus
+      />
+      <TextInput
+        value={lastName}
+        placeholder="Last Name"
+        onChangeText={(text) => onChangeLastName(text)}
       />
       <TextInput
         value={email}
@@ -64,6 +73,12 @@ function SignUpScreen({ navigation }) {
         autoCapitalize="none"
         autoCompleteType="email"
         keyboardType="email-address"
+      />
+      <TextInput
+        value={tenant}
+        placeholder="Organization"
+        onChangeText={(text) => onChangeTenant(text)}
+        autoFocus
       />
       <TextInput
         value={password}

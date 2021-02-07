@@ -47,27 +47,27 @@ export default function SignIn({ navigation, signIn: signInCb }) {
 
     return (
       <View style={styles.container}>
-      <TextInput
-        value={email}
-        placeholder="email@example.com"
-        onChangeText={(text) => onChangeEmail(text)}
-        autoCompleteType="email"
-        autoCapitalize="none"
-        autoFocus
-        keyboardType="email-address"
-      />
-      <TextInput
-        value={password}
-        placeholder="password"
-        onChangeText={(text) => onChangePassword(text)}
-        secureTextEntry
-        autoCompleteType="password"
-      />
-      <Button onPress={() => signIn()}
-        title='Sign In'
-      />
-      <Text>{errorMessage}</Text>
-      <Button onPress={() => navigation.navigate('ForgetPassword')} title='Forget Password'/>
-    </View>
+        <TextInput
+          value={email}
+          placeholder="email@example.com"
+          onChangeText={(text) => onChangeEmail(text)}
+          autoCompleteType="email"
+          autoCapitalize="none"
+          autoFocus
+          keyboardType="email-address"
+        />
+        <TextInput
+          value={password}
+          placeholder="password"
+          onChangeText={(text) => onChangePassword(text)}
+          secureTextEntry
+          autoCompleteType="password"
+        />
+        <Button onPress={() => signIn()}
+          title='Sign In'
+        />
+        <Text>{errorMessage}</Text>
+        <Button onPress={() => navigation.navigate('ForgetPassword')} title='Forget Password'/>
+      </View>
     );
 }

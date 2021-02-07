@@ -2,7 +2,7 @@
 
 exports.handler = async (event, context, callback) => {
   const cognitoidentityserviceprovider = new aws.CognitoIdentityServiceProvider({ apiVersion: '2016-04-18' });
-  const tenant = event.request?.userAttributes?.['custom:tenant_id'];
+  const tenant = event.request.userAttributes['custom:tenant'];
 
   const groupParams = {
     // GroupName: process.env.GROUP,
