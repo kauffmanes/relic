@@ -1,0 +1,10 @@
+type Todo
+  @model(subscriptions: null)
+  # looks in the tenant field (specified by the groupsField) of the
+  # Todo and matches it against the groups in the access token
+  @auth(rules: [{allow: groups, groupsField: "tenant"}]) { 
+  id: ID!
+  tenant: ID! # stores the tenant associated with the Todo item
+  name: String!
+  description: String
+}

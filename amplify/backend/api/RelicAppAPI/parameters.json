@@ -1,0 +1,11 @@
+{
+    "AppSyncApiName": "RelicAppAPI",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": false,
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authrelicec1ebe95",
+            "Outputs.UserPoolId"
+        ]
+    }
+}
