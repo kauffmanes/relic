@@ -44,6 +44,9 @@
 # phase:                      ""
 # datesFrom:                  DATE
 # datesTo:                    DATE
+
+
+# Tenants create their sites
 type Site
   @model
   @auth(rules: [{ allow: groups, groupsField: "tenant" }]) {

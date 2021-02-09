@@ -14,6 +14,22 @@
                     ]
                 }
             ]
+        },
+        "userPoolGroups": {
+            "service": "Cognito-UserPool-Groups",
+            "providerPlugin": "awscloudformation",
+            "dependsOn": [
+                {
+                    "category": "auth",
+                    "resourceName": "relicec1ebe95",
+                    "attributes": [
+                        "UserPoolId",
+                        "AppClientIDWeb",
+                        "AppClientID",
+                        "IdentityPoolId"
+                    ]
+                }
+            ]
         }
     },
     "function": {
@@ -21,6 +37,20 @@
             "build": true,
             "providerPlugin": "awscloudformation",
             "service": "Lambda"
+        },
+        "AdminQueriesd6ef3802": {
+            "service": "Lambda",
+            "providerPlugin": "awscloudformation",
+            "build": true,
+            "dependsOn": [
+                {
+                    "category": "auth",
+                    "resourceName": "relicec1ebe95",
+                    "attributes": [
+                        "UserPoolId"
+                    ]
+                }
+            ]
         }
     },
     "api": {
@@ -38,6 +68,27 @@
                     "additionalAuthenticationProviders": []
                 }
             }
+        },
+        "AdminQueries": {
+            "service": "API Gateway",
+            "providerPlugin": "awscloudformation",
+            "dependsOn": [
+                {
+                    "category": "auth",
+                    "resourceName": "relicec1ebe95",
+                    "attributes": [
+                        "UserPoolId"
+                    ]
+                },
+                {
+                    "category": "function",
+                    "resourceName": "AdminQueriesd6ef3802",
+                    "attributes": [
+                        "Arn",
+                        "Name"
+                    ]
+                }
+            ]
         }
     }
 }

@@ -5,16 +5,14 @@ exports.handler = async (event, context, callback) => {
   const tenant = event.request.userAttributes['custom:tenant'];
 
   const groupParams = {
-    // GroupName: process.env.GROUP,
     GroupName: tenant,
-    UserPoolId: event.userPoolId,
+    UserPoolId: event.userPoolId
   };
 
   const addUserParams = {
-    // GroupName: process.env.GROUP,
     GroupName: tenant,
     UserPoolId: event.userPoolId,
-    Username: event.userName,
+    Username: event.userName
   };
 
   try {
@@ -23,10 +21,27 @@ exports.handler = async (event, context, callback) => {
     await cognitoidentityserviceprovider.createGroup(groupParams).promise();
   }
 
+  // add user to their tenant group
   try {
     await cognitoidentityserviceprovider.adminAddUserToGroup(addUserParams).promise();
     callback(null, event);
   } catch (e) {
     callback(e);
   }
+
+  const addAdminParams = {
+    GroupName: 'admin',
+    UserPoolId: event.userPoolId,
+    Username: event.userName
+  };
+  
+  // add new users that create account via signup page to the admin group
+  // a new tenant's user is always an admin
+  try {
+    await cognitoidentityserviceprovider.adminAddUserToGroup(addAdminParams).promise();
+    callback(null, event);
+  } catch (e) {
+    callback(e);
+  }
+
 };

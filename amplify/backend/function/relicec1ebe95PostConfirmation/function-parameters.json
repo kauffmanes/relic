@@ -7,10 +7,11 @@
   "functionName": "relicec1ebe95PostConfirmation",
   "resourceName": "relicec1ebe95PostConfirmation",
   "parentStack": "auth",
-  "triggerEnvs": [],
+  "triggerEnvs": "[]",
   "triggerDir": "/Users/emilykauffman/.nvm/versions/node/v12.8.1/lib/node_modules/@aws-amplify/cli/node_modules/amplify-category-auth/provider-utils/awscloudformation/utils/../triggers/PostConfirmation",
   "triggerTemplate": "PostConfirmation.json.ejs",
   "roleName": "relicec1ebe95PostConfirmation",
   "skipEdit": true,
-  "GROUP": "DefaultTenantGroup"
+  "GROUP": "DefaultTenantGroup",
+  "triggerEventPath": "PostConfirmation.event.json"
 }
